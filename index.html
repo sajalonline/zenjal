@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenjal — Where Tradition Meets Grace | Boutique Indian Fashion</title>
+  <meta name="description" content="Discover Zenjal, a premium boutique Indian fashion brand. Shop our handcrafted Chanderi sets, pure Varanasi Katan silk sarees, festive pastel lehengas, and sheer organza dupattas. Custom tailoring & global shipping." />
+  <meta name="keywords" content="boutique Indian fashion, custom tailoring, Chanderi Kurta, Katan Silk Saree, designer Lehenga, organza dupatta, festive wear India, boutique clothing" />
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Zenjal — Where Tradition Meets Grace | Boutique Indian Fashion" />
+  <meta property="og:description" content="Stunning handcrafted Indian textiles, customized fits, and gorgeous festive edits. Discover the grace of pure silks and handblock cotton prints." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/hero_slide_1.jpg" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="app.css" />
+  
+  <!-- Preconnect to speed up font loads -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. Abandoned Cart Recovery Banner / Notification Toast
+       ========================================================================== -->
+  <div id="abandoned-cart-banner" class="abandoned-cart-banner" role="alert" aria-live="polite">
+    <div class="banner-message">
+      <span style="font-size: 1.2rem;">✨</span>
+      <span><strong>Hemlata left something special in your cart!</strong> Complete your order now and enjoy complimentary express delivery + 10% off.</span>
+    </div>
+    <div class="banner-actions">
+      <button class="btn btn-gold banner-btn" onclick="app.checkout.openCheckout()">Checkout Now</button>
+      <button class="banner-close" aria-label="Close notification" onclick="app.cart.closeAbandonedBanner()">✕</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. Application Header
+       ========================================================================== -->
+  <header id="app-header">
+    <div class="container navbar">
+      <!-- Brand Logo -->
+      <a href="#/" class="logo" aria-label="Zenjal Homepage">
+        <span class="logo-icon">🪡</span>
+        Zen<span>j</span>al
+      </a>
+      
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#/" class="nav-link active" data-route="/">Home</a></li>
+          <li><a href="#/shop" class="nav-link" data-route="/shop">Shop</a></li>
+          <li><a href="#/collections" class="nav-link" data-route="/collections">Collections</a></li>
+          <li><a href="#/customize" class="nav-link" data-route="/customize">Bespoke Fit</a></li>
+          <li><a href="#/about" class="nav-link" data-route="/about">About Us</a></li>
+          <li><a href="#/blog" class="nav-link" data-route="/blog">Blog</a></li>
+          <li><a href="#/contact" class="nav-link" data-route="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Nav Action Icon Buttons (Search, Wishlist, Cart) -->
+      <div class="nav-actions">
+        <!-- Search Toggle -->
+        <button class="nav-icon-btn" aria-label="Search Catalog" onclick="app.ui.toggleSearch(true)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        
+        <!-- Wishlist Button with Counter -->
+        <button class="nav-icon-btn" aria-label="Open Wishlist" onclick="app.ui.toggleWishlist(true)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span id="wishlist-counter" class="badge-counter" style="display: none;">0</span>
+        </button>
+        
+        <!-- Cart Button with Counter -->
+        <button class="nav-icon-btn" aria-label="Open Shopping Cart" onclick="app.ui.toggleCart(true)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span id="cart-counter" class="badge-counter" style="display: none;">0</span>
+        </button>
+        
+        <!-- Mobile Menu Toggle Hamburger -->
+        <button class="menu-toggle nav-icon-btn" aria-label="Toggle Navigation Menu" onclick="app.ui.toggleMobileMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div id="mobile-menu-backdrop" class="drawer-backdrop" onclick="app.ui.toggleMobileMenu(false)"></div>
+  <div id="mobile-menu-drawer" class="drawer" style="right: -450px;">
+    <div class="drawer-header">
+      <h2 class="drawer-title">Menu</h2>
+      <button class="drawer-close-btn" onclick="app.ui.toggleMobileMenu(false)">✕</button>
+    </div>
+    <div class="drawer-body" style="padding-top: 2rem;">
+      <ul class="footer-links-list" style="display: flex; flex-direction: column; gap: 1.5rem; font-size: 1.25rem; font-family: var(--font-serif);">
+        <li><a href="#/" onclick="app.ui.toggleMobileMenu(false)" style="font-size: 1.4rem;">Home</a></li>
+        <li><a href="#/shop" onclick="app.ui.toggleMobileMenu(false)" style="font-size: 1.4rem;">Shop Page</a></li>
+        <li><a href="#/collections" onclick="app.ui.toggleMobileMenu(false)" style="font-size: 1.4rem;">Our Collections</a></li>
+        <li><a href="#/customize" onclick="app.ui.toggleMobileMenu(false)" style="font-size: 1.4rem;">Bespoke Fit</a></li>
+        <li><a href="#/about" onclick="app.ui.toggleMobileMenu(false)" style="font-size: 1.4rem;">About Us Story</a></li>
+        <li><a href="#/blog" onclick="app.ui.toggleMobileMenu(false)" style="font-size: 1.4rem;">Lookbook Blog</a></li>
+        <li><a href="#/contact" onclick="app.ui.toggleMobileMenu(false)" style="font-size: 1.4rem;">Contact & Boutique</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       3. Dynamic Routing Container Views Area
+       ========================================================================== -->
+  <main id="view-container">
+    <!-- Active router content will dynamically load here -->
+    <div class="container text-center" style="padding: 10rem 0; font-family: var(--font-serif); font-size: 1.5rem;">
+      <p style="color: var(--primary-gold); letter-spacing: 0.1em;">Woven with intention...</p>
+      <p style="font-style: italic; font-size: 1.2rem; color: var(--text-muted); margin-top: 1rem;">Loading Zenjal Heritage Experience...</p>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       4. Side Shopping Cart Drawer
+       ========================================================================== -->
+  <div id="cart-backdrop" class="drawer-backdrop" onclick="app.ui.toggleCart(false)"></div>
+  <aside id="cart-drawer" class="drawer" aria-label="Shopping Cart">
+    <div class="drawer-header">
+      <h2 class="drawer-title">Your Cart</h2>
+      <button class="drawer-close-btn" aria-label="Close cart" onclick="app.ui.toggleCart(false)">✕</button>
+    </div>
+    
+    <div class="drawer-body">
+      <!-- Dynamic cart contents or empty state -->
+      <div id="cart-items-container">
+        <!-- Rendered in app.js -->
+      </div>
+    </div>
+    
+    <div class="drawer-footer" id="cart-footer-block">
+      <div class="summary-row">
+        <span>Bag Subtotal</span>
+        <span id="cart-subtotal">₹0</span>
+      </div>
+      <div class="summary-row" style="font-size: 0.85rem; color: var(--text-muted);">
+        <span>Estimated GST (12% Incl.)</span>
+        <span id="cart-gst">₹0</span>
+      </div>
+      <p class="gst-notice">Free shipping across India 🇮🇳</p>
+      
+      <button class="btn btn-primary btn-block" onclick="app.checkout.openCheckout()">Proactively Checkout</button>
+      <button class="btn btn-secondary btn-block" style="margin-top: 0.5rem; border: none;" onclick="app.ui.toggleCart(false)">Continue Browsing</button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       5. Wishlist Overlay Drawer
+       ========================================================================== -->
+  <div id="wishlist-backdrop" class="drawer-backdrop" onclick="app.ui.toggleWishlist(false)"></div>
+  <aside id="wishlist-drawer" class="drawer" aria-label="Wishlist">
+    <div class="drawer-header">
+      <h2 class="drawer-title">My Wishlist</h2>
+      <button class="drawer-close-btn" aria-label="Close wishlist" onclick="app.ui.toggleWishlist(false)">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div id="wishlist-items-container">
+        <!-- Rendered in app.js -->
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       6. Interactive Global Search Modal
+       ========================================================================== -->
+  <div id="search-modal" class="modal-overlay" onclick="app.ui.toggleSearch(false)">
+    <div class="modal-content" style="max-width: 550px; padding: 2rem;" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color:var(--accent-maroon);">Search Zenjal Boutique</h3>
+        <button onclick="app.ui.toggleSearch(false)" style="font-size: 1.2rem; color:var(--text-muted);">✕</button>
+      </div>
+      <div style="position:relative; display:flex; gap:0.5rem;">
+        <input type="text" id="search-input" placeholder="Search Kurta, Sarees, Lehengas..." class="form-input" style="font-size: 1rem; padding: 0.75rem 1rem;" />
+        <button class="btn btn-primary" onclick="app.ui.executeSearch()" style="padding: 0 1.5rem;">Go</button>
+      </div>
+      <div id="search-results-panel" style="margin-top: 1.5rem; max-height: 250px; overflow-y: auto;">
+        <!-- Dynamic searches results -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       7. Interactive Checkout Wizard Modal
+       ========================================================================== -->
+  <div id="checkout-modal" class="modal-overlay" onclick="app.checkout.closeCheckout()">
+    <div class="modal-content" style="max-width: 720px;" onclick="event.stopPropagation()">
+      
+      <!-- Wizard Progress Indicators -->
+      <div class="checkout-steps">
+        <div class="step-item active" id="step-tab-1">
+          <div class="step-num">1</div>
+          <span>Shipping</span>
+        </div>
+        <div class="step-item" id="step-tab-2">
+          <div class="step-num">2</div>
+          <span>Payment</span>
+        </div>
+        <div class="step-item" id="step-tab-3">
+          <div class="step-num">3</div>
+          <span>Confirmation</span>
+        </div>
+      </div>
+      
+      <!-- Wizard Content Bodies -->
+      <div class="checkout-form" id="checkout-wizard-body">
+        <!-- Rendered dynamically in app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       8. Size Guide Modal
+       ========================================================================== -->
+  <div id="size-guide-modal" class="modal-overlay" onclick="app.ui.toggleSizeGuide(false)">
+    <div class="modal-content" style="max-width: 500px; padding: 2.5rem;" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; color:var(--accent-maroon);">Zenjal Size Guide</h3>
+        <button onclick="app.ui.toggleSizeGuide(false)" style="font-size: 1.2rem;">✕</button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic;">All measurements are in inches. Our garments have a comfort breathing buffer of 1-1.5 inches.</p>
+      
+      <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--primary-gold); font-weight: 700; color: var(--accent-maroon);">
+            <th style="padding: 0.5rem;">Size</th>
+            <th style="padding: 0.5rem;">Bust</th>
+            <th style="padding: 0.5rem;">Waist</th>
+            <th style="padding: 0.5rem;">Hip</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--border-gold);">
+            <td style="padding: 0.5rem; font-weight:700;">XS</td>
+            <td style="padding: 0.5rem;">32</td>
+            <td style="padding: 0.5rem;">26</td>
+            <td style="padding: 0.5rem;">35</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-gold);">
+            <td style="padding: 0.5rem; font-weight:700;">S</td>
+            <td style="padding: 0.5rem;">34</td>
+            <td style="padding: 0.5rem;">28</td>
+            <td style="padding: 0.5rem;">37</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-gold);">
+            <td style="padding: 0.5rem; font-weight:700;">M</td>
+            <td style="padding: 0.5rem;">36</td>
+            <td style="padding: 0.5rem;">30</td>
+            <td style="padding: 0.5rem;">39</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-gold);">
+            <td style="padding: 0.5rem; font-weight:700;">L</td>
+            <td style="padding: 0.5rem;">38</td>
+            <td style="padding: 0.5rem;">32</td>
+            <td style="padding: 0.5rem;">41</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-gold);">
+            <td style="padding: 0.5rem; font-weight:700;">XL</td>
+            <td style="padding: 0.5rem;">40</td>
+            <td style="padding: 0.5rem;">34</td>
+            <td style="padding: 0.5rem;">43</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-gold);">
+            <td style="padding: 0.5rem; font-weight:700;">XXL</td>
+            <td style="padding: 0.5rem;">42</td>
+            <td style="padding: 0.5rem;">36</td>
+            <td style="padding: 0.5rem;">45</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.5rem; font-weight:700;">3XL</td>
+            <td style="padding: 0.5rem;">44</td>
+            <td style="padding: 0.5rem;">38</td>
+            <td style="padding: 0.5rem;">47</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 1.5rem; background-color: var(--bg-ivory-dark); padding: 1rem; border-radius: var(--radius-sm); font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+        <strong>Custom Sizing Needed?</strong><br/>
+        Since each piece is hand-finished, Hemlata offers complete tailoring customizations. Add the item to your cart and request alterations directly over WhatsApp during order reviews!
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       9. Application Footer
+       ========================================================================== -->
+  <footer id="app-footer">
+    <div class="container footer-grid">
+      <!-- Column 1: Brand Info -->
+      <div class="footer-col-about">
+        <a href="#/" class="footer-logo">
+          Zen<span>j</span>al
+        </a>
+        <p class="footer-tagline">"Where Tradition Meets Grace"</p>
+        <p style="font-size: 0.85rem; opacity: 0.85; line-height: 1.6;">
+          Handcrafting beautiful ethnic wear, chanderi silks, block prints, and bespoke wedding edits for modern Indian women globally.
+        </p>
+        <div class="footer-badge">
+          <span>🇮🇳</span>
+          <strong>Made in India with Pride</strong>
+        </div>
+      </div>
+      
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col">
+        <h3>Boutique Menu</h3>
+        <ul class="footer-links-list">
+          <li><a href="#/shop">Explore Shop</a></li>
+          <li><a href="#/collections">All Collections</a></li>
+          <li><a href="#/about">The Brand Story</a></li>
+          <li><a href="#/blog">Festive Lookbooks</a></li>
+          <li><a href="#/contact">Store Location</a></li>
+        </ul>
+      </div>
+      
+      <!-- Column 3: Customer Care -->
+      <div class="footer-col">
+        <h3>Assistance</h3>
+        <ul class="footer-links-list">
+          <li><a href="#/contact">Custom Tailoring</a></li>
+          <li><a href="#/contact">WhatsApp Consultations</a></li>
+          <li><a href="#/about">Artisan Sourcing</a></li>
+          <li><a href="#/contact">Return Policy</a></li>
+          <li><a href="#/contact">Privacy Policy</a></li>
+        </ul>
+      </div>
+      
+      <!-- Column 4: Newsletter & Contact -->
+      <div class="footer-col">
+        <h3>Join Our Parivaar</h3>
+        <p class="newsletter-desc">Subscribe for early alerts to limited-edition drops and artisan stories.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Dhanyawaad! You are now subscribed to Zenjal Updates.'); this.reset();">
+          <div class="newsletter-input-group">
+            <input type="email" placeholder="Your Email Address" class="newsletter-input" required aria-label="Email for Newsletter" />
+            <button type="submit" class="newsletter-btn">Join</button>
+          </div>
+        </form>
+        
+        <!-- Social Medias Icons -->
+        <div class="footer-socials-row">
+          <a href="https://instagram.com/zenjal_boutique" target="_blank" rel="noopener" class="footer-social-link" aria-label="Zenjal Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://pinterest.com" target="_blank" rel="noopener" class="footer-social-link" aria-label="Zenjal Pinterest">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-social-link" aria-label="Zenjal Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Credits -->
+    <div class="container footer-bottom">
+      <p>© 2026 Zenjal Boutique. Crafted under Hemlata, Siddharthnagar, UP. All Rights Reserved.</p>
+      
+      <!-- Payment gateway icons -->
+      <div class="payment-gateways-list" aria-label="Accepted Payment Methods">
+        <span title="Cash on Delivery">💵 COD</span>
+        <span title="Razorpay">💳 Card</span>
+        <span title="UPI payment">📱 UPI</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       10. Core Logic Scripts loading
+       ========================================================================== -->
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
